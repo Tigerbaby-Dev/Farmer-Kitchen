@@ -1,0 +1,1305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Farmer's Kitchen — Oregon's Finest, Direct to You</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --ink:       #1a1c18;
+  --ink-soft:  #3d4039;
+  --ink-muted: #787d75;
+  --ink-ghost: #a8ada5;
+  --sage:      #4e6b52;
+  --sage-mid:  #6e8f72;
+  --sage-pale: #b8ccba;
+  --sage-tint: #edf2ee;
+  --cream:     #f7f4ef;
+  --cream-mid: #ede9e1;
+  --cream-dark:#d8d2c6;
+  --gold:      #a07a42;
+  --gold-pale: #c9a96e;
+  --white:     #fdfcfa;
+  --serif: 'Playfair Display', Georgia, serif;
+  --sans:  'Jost', sans-serif;
+}
+
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+  font-family: var(--sans);
+  background: var(--white);
+  color: var(--ink);
+  font-weight: 300;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+img { display: block; max-width: 100%; }
+a { text-decoration: none; }
+
+.label {
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.label::before {
+  content: '';
+  display: block;
+  width: 24px;
+  height: 1px;
+  background: var(--gold);
+  flex-shrink: 0;
+}
+
+/* NAV */
+nav {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 5vw;
+  height: 72px;
+  transition: background 0.4s ease, box-shadow 0.4s ease;
+}
+nav.scrolled {
+  background: rgba(253,252,250,0.96);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 1px 0 var(--cream-dark);
+}
+.nav-logo {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--white);
+  letter-spacing: 0.02em;
+  transition: color 0.4s;
+  line-height: 1;
+}
+nav.scrolled .nav-logo { color: var(--ink); }
+.nav-logo em { font-style: italic; color: var(--gold-pale); transition: color 0.4s; }
+nav.scrolled .nav-logo em { color: var(--gold); }
+
+.nav-center {
+  display: flex;
+  gap: 2.8rem;
+  list-style: none;
+}
+.nav-center a {
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.75);
+  transition: color 0.3s;
+}
+nav.scrolled .nav-center a { color: var(--ink-muted); }
+.nav-center a:hover { color: var(--white); }
+nav.scrolled .nav-center a:hover { color: var(--ink); }
+
+.nav-right { display: flex; align-items: center; }
+.btn-nav {
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink);
+  background: var(--white);
+  padding: 0.6rem 1.4rem;
+  transition: background 0.3s, color 0.3s;
+}
+nav.scrolled .btn-nav { background: var(--ink); color: var(--white); }
+.btn-nav:hover { background: var(--sage) !important; color: var(--white) !important; }
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+.hamburger span {
+  display: block;
+  width: 22px;
+  height: 1px;
+  background: var(--white);
+  transition: background 0.3s;
+}
+nav.scrolled .hamburger span { background: var(--ink); }
+
+/* HERO */
+.hero {
+  position: relative;
+  height: 100svh;
+  min-height: 600px;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.hero-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.05);
+  animation: heroZoom 10s ease forwards;
+}
+@keyframes heroZoom { to { transform: scale(1); } }
+.hero-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(15,18,14,0.85) 0%, rgba(15,18,14,0.3) 55%, rgba(15,18,14,0.1) 100%);
+}
+.hero-content {
+  position: relative;
+  z-index: 1;
+  padding: 0 10vw 9vh;
+  max-width: 860px;
+  animation: heroFade 1.1s ease 0.3s both;
+}
+@keyframes heroFade {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.hero-kicker {
+  font-size: 0.63rem;
+  font-weight: 400;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--gold-pale);
+  margin-bottom: 1.8rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.hero-kicker::before {
+  content: '';
+  display: block;
+  width: 32px;
+  height: 1px;
+  background: var(--gold-pale);
+}
+.hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(2.8rem, 5.5vw, 5rem);
+  font-weight: 400;
+  line-height: 1.1;
+  color: var(--white);
+  margin-bottom: 1.8rem;
+  letter-spacing: -0.01em;
+}
+.hero h1 em { font-style: italic; color: var(--sage-pale); }
+.hero-sub {
+  font-size: 1rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.62);
+  max-width: 480px;
+  margin-bottom: 3rem;
+  line-height: 1.85;
+}
+.hero-actions { display: flex; align-items: center; gap: 2rem; }
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  background: var(--sage);
+  color: var(--white);
+  font-family: var(--sans);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 1.1rem 2.4rem;
+  transition: background 0.3s, transform 0.3s;
+}
+.btn-primary:hover { background: var(--sage-mid); transform: translateY(-2px); }
+.btn-ghost {
+  font-size: 0.68rem;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.65);
+  border-bottom: 1px solid rgba(255,255,255,0.3);
+  padding-bottom: 2px;
+  transition: color 0.3s, border-color 0.3s;
+}
+.btn-ghost:hover { color: var(--white); border-color: rgba(255,255,255,0.7); }
+
+.hero-scroll {
+  position: absolute;
+  bottom: 3rem;
+  right: 5vw;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.58rem;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  writing-mode: vertical-rl;
+  animation: heroFade 1s ease 1.2s both;
+}
+.hero-scroll::after {
+  content: '';
+  display: block;
+  width: 1px;
+  height: 48px;
+  background: rgba(255,255,255,0.2);
+}
+
+/* MARQUEE */
+.marquee-strip {
+  background: var(--sage);
+  padding: 0.85rem 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.marquee-track {
+  display: inline-flex;
+  gap: 3rem;
+  animation: marquee 24s linear infinite;
+}
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.marquee-item {
+  font-size: 0.6rem;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.65);
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+.marquee-item::after { content: '✦'; color: var(--gold-pale); font-size: 0.45rem; }
+
+/* SECTIONS */
+.section { padding: 9rem 10vw; }
+
+/* ABOUT */
+.about {
+  display: grid;
+  grid-template-columns: 5fr 6fr;
+  gap: 8vw;
+  align-items: center;
+  background: var(--white);
+}
+.about-media { position: relative; }
+.about-img-main {
+  width: 100%;
+  aspect-ratio: 3/4;
+  object-fit: cover;
+}
+.about-img-inset {
+  position: absolute;
+  bottom: -3rem;
+  right: -3rem;
+  width: 52%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border: 6px solid var(--white);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+}
+.about-year {
+  position: absolute;
+  top: 2rem;
+  left: -1.5rem;
+  writing-mode: vertical-rl;
+  font-size: 0.58rem;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-ghost);
+}
+.about-body { padding-bottom: 4rem; }
+.about-body .label { margin-bottom: 2rem; }
+.about-body h2 {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 3.2vw, 3.4rem);
+  font-weight: 400;
+  line-height: 1.18;
+  color: var(--ink);
+  margin-bottom: 2rem;
+  letter-spacing: -0.01em;
+}
+.about-body h2 em { font-style: italic; color: var(--sage); }
+.about-body p {
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+  line-height: 1.9;
+  margin-bottom: 1.2rem;
+}
+.about-rule { width: 40px; height: 1px; background: var(--cream-dark); margin: 2.5rem 0; }
+.about-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; }
+.stat {
+  padding: 1.5rem 0;
+  border-right: 1px solid var(--cream-dark);
+}
+.stat:first-child { padding-left: 0; }
+.stat:last-child { border-right: none; }
+.stat strong {
+  display: block;
+  font-family: var(--serif);
+  font-size: 2.6rem;
+  font-weight: 400;
+  color: var(--sage);
+  line-height: 1;
+  margin-bottom: 0.4rem;
+}
+.stat span {
+  font-size: 0.68rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-ghost);
+}
+
+/* VALUES */
+.values { background: var(--cream); }
+.values-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: end;
+  margin-bottom: 5rem;
+}
+.values-header .label { margin-bottom: 1.5rem; }
+.values-header h2 {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 3vw, 3.2rem);
+  font-weight: 400;
+  line-height: 1.18;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+.values-header h2 em { font-style: italic; color: var(--sage); }
+.values-header p {
+  font-size: 0.92rem;
+  color: var(--ink-muted);
+  line-height: 1.85;
+  padding-top: 1rem;
+}
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border: 1px solid var(--cream-dark);
+}
+.value-card {
+  padding: 2.8rem 2rem;
+  border-right: 1px solid var(--cream-dark);
+  transition: background 0.3s;
+}
+.value-card:last-child { border-right: none; }
+.value-card:hover { background: var(--white); }
+.value-num {
+  font-family: var(--serif);
+  font-size: 3.2rem;
+  font-weight: 400;
+  color: var(--cream-dark);
+  line-height: 1;
+  margin-bottom: 1.2rem;
+  transition: color 0.3s;
+}
+.value-card:hover .value-num { color: var(--sage-pale); }
+.value-line { width: 24px; height: 1px; background: var(--sage); margin-bottom: 1.4rem; }
+.value-card h3 {
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: var(--ink);
+  margin-bottom: 0.85rem;
+  line-height: 1.35;
+}
+.value-card p { font-size: 0.82rem; color: var(--ink-muted); line-height: 1.8; }
+
+/* PRODUCTS */
+.products { background: var(--white); }
+.products-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 4rem;
+}
+.products-header .label { margin-bottom: 1rem; }
+.products-header h2 {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 3vw, 3.2rem);
+  font-weight: 400;
+  line-height: 1.18;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+.products-header h2 em { font-style: italic; color: var(--sage); }
+.products-header a {
+  font-size: 0.68rem;
+  font-weight: 400;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  border-bottom: 1px solid var(--cream-dark);
+  padding-bottom: 3px;
+  white-space: nowrap;
+  margin-bottom: 0.4rem;
+  transition: color 0.3s, border-color 0.3s;
+}
+.products-header a:hover { color: var(--sage); border-color: var(--sage); }
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  background: var(--cream-mid);
+}
+.product-card { background: var(--white); display: flex; flex-direction: column; }
+.product-img-wrap { overflow: hidden; position: relative; }
+.product-img {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+.product-card:hover .product-img { transform: scale(1.04); }
+.product-badge {
+  position: absolute;
+  top: 1.2rem;
+  left: 1.2rem;
+  background: var(--white);
+  font-size: 0.57rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--sage);
+  padding: 0.32rem 0.7rem;
+}
+.product-body {
+  padding: 1.6rem 1.8rem 2rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.product-origin {
+  font-size: 0.62rem;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-ghost);
+  margin-bottom: 0.5rem;
+}
+.product-body h3 {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: var(--ink);
+  margin-bottom: 0.65rem;
+  line-height: 1.3;
+}
+.product-body p {
+  font-size: 0.82rem;
+  color: var(--ink-muted);
+  line-height: 1.75;
+  flex: 1;
+  margin-bottom: 1.4rem;
+}
+.product-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1.2rem;
+  border-top: 1px solid var(--cream-mid);
+}
+.product-price {
+  font-family: var(--serif);
+  font-size: 1.35rem;
+  font-weight: 400;
+  color: var(--ink);
+}
+.product-unit {
+  font-family: var(--sans);
+  font-size: 0.7rem;
+  color: var(--ink-ghost);
+  font-weight: 300;
+}
+.btn-add {
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--white);
+  background: var(--ink);
+  padding: 0.6rem 1.2rem;
+  transition: background 0.3s;
+}
+.btn-add:hover { background: var(--sage); }
+
+/* IMPACT */
+.impact { background: var(--ink); overflow: hidden; }
+.impact-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 80vh;
+}
+.impact-img-col { position: relative; overflow: hidden; }
+.impact-img-col img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.65;
+  transition: transform 0.8s ease;
+}
+.impact-img-col:hover img { transform: scale(1.02); }
+.impact-img-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, transparent 55%, var(--ink) 100%);
+}
+.impact-text-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 7rem 6vw 7rem 5vw;
+}
+.impact-text-col .label { margin-bottom: 2.5rem; }
+.impact-text-col .label::before { background: var(--gold); }
+.impact-text-col h2 {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 2.8vw, 3rem);
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--white);
+  margin-bottom: 1.8rem;
+  letter-spacing: -0.01em;
+}
+.impact-text-col h2 em { font-style: italic; color: var(--sage-pale); }
+.impact-text-col > p {
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.48);
+  line-height: 1.9;
+  margin-bottom: 3rem;
+}
+.impact-metrics {
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+.impact-metric {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.metric-num {
+  font-family: var(--serif);
+  font-size: 2.2rem;
+  font-weight: 400;
+  color: var(--white);
+  min-width: 80px;
+  line-height: 1;
+}
+.metric-label { font-size: 0.8rem; font-weight: 300; color: rgba(255,255,255,0.42); line-height: 1.6; }
+.metric-label strong {
+  display: block;
+  font-weight: 400;
+  color: rgba(255,255,255,0.72);
+  margin-bottom: 0.2rem;
+  font-size: 0.85rem;
+}
+.impact-quote-block {
+  margin-top: 3rem;
+  padding: 2rem;
+  border-left: 2px solid var(--sage);
+  background: rgba(255,255,255,0.04);
+}
+.impact-quote-block blockquote {
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  font-style: italic;
+  color: rgba(255,255,255,0.65);
+  line-height: 1.65;
+  margin-bottom: 0.8rem;
+}
+.impact-quote-block cite {
+  font-size: 0.65rem;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.28);
+}
+
+/* CONTACT */
+.contact { background: var(--cream); }
+.contact-inner {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 8vw;
+  align-items: start;
+}
+.contact-left .label { margin-bottom: 2rem; }
+.contact-left h2 {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 3vw, 3.2rem);
+  font-weight: 400;
+  line-height: 1.18;
+  color: var(--ink);
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.01em;
+}
+.contact-left h2 em { font-style: italic; color: var(--sage); }
+.contact-left > p {
+  font-size: 0.9rem;
+  color: var(--ink-muted);
+  line-height: 1.9;
+  margin-bottom: 3rem;
+}
+.contact-details { display: flex; flex-direction: column; gap: 1.2rem; }
+.contact-detail { display: flex; align-items: flex-start; gap: 1.2rem; }
+.detail-icon {
+  width: 38px;
+  height: 38px;
+  border: 1px solid var(--cream-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.88rem;
+  flex-shrink: 0;
+  background: var(--white);
+}
+.detail-text strong {
+  display: block;
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-ghost);
+  margin-bottom: 0.2rem;
+}
+.detail-text span { font-size: 0.88rem; color: var(--ink-soft); }
+.contact-form-wrap {
+  background: var(--white);
+  padding: 3rem;
+  box-shadow: 0 2px 40px rgba(0,0,0,0.06);
+}
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+.form-group { margin-bottom: 1.4rem; }
+.form-group label {
+  display: block;
+  font-size: 0.63rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-ghost);
+  margin-bottom: 0.6rem;
+}
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--cream-dark);
+  background: var(--cream);
+  font-family: var(--sans);
+  font-size: 0.88rem;
+  font-weight: 300;
+  color: var(--ink);
+  outline: none;
+  border-radius: 0;
+  transition: border-color 0.3s, background 0.3s;
+  appearance: none;
+}
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus { border-color: var(--sage); background: var(--white); }
+.form-group input::placeholder,
+.form-group textarea::placeholder { color: var(--ink-ghost); }
+.form-group textarea { height: 130px; resize: none; }
+.btn-submit {
+  width: 100%;
+  padding: 1.1rem;
+  background: var(--ink);
+  color: var(--white);
+  border: none;
+  font-family: var(--sans);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.3s;
+  border-radius: 0;
+}
+.btn-submit:hover { background: var(--sage); }
+
+/* FOOTER */
+footer { background: var(--ink); padding: 5rem 10vw 3rem; }
+.footer-top {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 4rem;
+  padding-bottom: 4rem;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  margin-bottom: 2.5rem;
+}
+.footer-brand .nav-logo {
+  color: var(--white);
+  display: inline-block;
+  margin-bottom: 1.5rem;
+}
+.footer-brand .nav-logo em { color: var(--gold-pale); }
+.footer-tagline {
+  font-family: var(--serif);
+  font-size: 0.95rem;
+  font-style: italic;
+  color: rgba(255,255,255,0.28);
+  line-height: 1.7;
+  max-width: 240px;
+  margin-bottom: 2rem;
+}
+.footer-social { display: flex; gap: 0.8rem; }
+.footer-social a {
+  width: 34px;
+  height: 34px;
+  border: 1px solid rgba(255,255,255,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  color: rgba(255,255,255,0.35);
+  transition: border-color 0.3s, color 0.3s;
+}
+.footer-social a:hover { border-color: var(--sage-pale); color: var(--sage-pale); }
+.footer-col h4 {
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.22);
+  margin-bottom: 1.5rem;
+}
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+.footer-col a {
+  font-size: 0.83rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.42);
+  transition: color 0.3s;
+}
+.footer-col a:hover { color: rgba(255,255,255,0.82); }
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.7rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.18);
+  letter-spacing: 0.04em;
+}
+
+/* MOBILE */
+@media (max-width: 1024px) {
+  .values-grid { grid-template-columns: 1fr 1fr; }
+  .products-grid { grid-template-columns: 1fr 1fr; }
+  .impact-inner { grid-template-columns: 1fr; }
+  .impact-img-col { height: 50vw; min-height: 260px; }
+  .impact-img-overlay { background: linear-gradient(to top, var(--ink) 0%, transparent 60%); }
+  .impact-text-col { padding: 5rem 6vw; }
+}
+@media (max-width: 768px) {
+  .section { padding: 6rem 6vw; }
+  nav { padding: 0 6vw; }
+  .nav-center { display: none; }
+  .hamburger { display: flex; }
+  .btn-nav { display: none; }
+  .nav-center.open {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    inset: 72px 0 0;
+    background: var(--white);
+    padding: 3rem 6vw;
+    gap: 2rem;
+    z-index: 199;
+    overflow-y: auto;
+  }
+  .nav-center.open a { color: var(--ink-soft); font-size: 0.85rem; }
+  .about { grid-template-columns: 1fr; }
+  .about-img-inset { display: none; }
+  .about-img-main { aspect-ratio: 16/9; }
+  .about-body { padding-bottom: 0; }
+  .values-header { grid-template-columns: 1fr; gap: 1.5rem; }
+  .products-header { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+  .contact-inner { grid-template-columns: 1fr; }
+  .footer-top { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+  .form-row { grid-template-columns: 1fr; }
+}
+@media (max-width: 540px) {
+  .values-grid { grid-template-columns: 1fr; }
+  .products-grid { grid-template-columns: 1fr; }
+  .hero h1 { font-size: 2.4rem; }
+  .hero-actions { flex-direction: column; align-items: flex-start; gap: 1.2rem; }
+  .footer-top { grid-template-columns: 1fr; }
+  .footer-bottom { flex-direction: column; gap: 0.6rem; text-align: center; }
+  .about-stats { grid-template-columns: 1fr 1fr; }
+  .hero-scroll { display: none; }
+}
+
+/* SCROLL REVEAL */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.75s ease, transform 0.75s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.12s; }
+.reveal-delay-2 { transition-delay: 0.24s; }
+.reveal-delay-3 { transition-delay: 0.36s; }
+.reveal-delay-4 { transition-delay: 0.48s; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo">Farmer's <em>Kitchen</em></a>
+  <ul class="nav-center" id="navMenu">
+    <li><a href="#about">About</a></li>
+    <li><a href="#products">Products</a></li>
+    <li><a href="#impact">Our Impact</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="#contact" class="btn-nav">Order Now</a>
+  </div>
+  <button class="hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg">
+    <img src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=1600&auto=format&fit=crop&q=85" alt="Oregon farmland at golden hour">
+  </div>
+  <div class="hero-content">
+    <p class="hero-kicker">Eugene, Oregon — Est. 2021</p>
+    <h1>Fresh. Local.<br><em>Direct.</em></h1>
+    <p class="hero-sub">Farmer's Kitchen connects Oregon families to the farmers who grow their food. No warehouses, no guesswork — just exceptional produce, sourced with care and delivered fresh.</p>
+    <div class="hero-actions">
+      <a href="#products" class="btn-primary">Explore This Season</a>
+      <a href="#about" class="btn-ghost">Our Story</a>
+    </div>
+  </div>
+  <div class="hero-scroll">Scroll</div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-strip" aria-hidden="true">
+  <div class="marquee-track">
+    <span class="marquee-item">100% Organic Certified</span>
+    <span class="marquee-item">42+ Partner Farms</span>
+    <span class="marquee-item">Same-Week Harvest</span>
+    <span class="marquee-item">Willamette Valley Grown</span>
+    <span class="marquee-item">Fair Farmer Pay</span>
+    <span class="marquee-item">Zero Middlemen</span>
+    <span class="marquee-item">Eugene Delivered</span>
+    <span class="marquee-item">100% Organic Certified</span>
+    <span class="marquee-item">42+ Partner Farms</span>
+    <span class="marquee-item">Same-Week Harvest</span>
+    <span class="marquee-item">Willamette Valley Grown</span>
+    <span class="marquee-item">Fair Farmer Pay</span>
+    <span class="marquee-item">Zero Middlemen</span>
+    <span class="marquee-item">Eugene Delivered</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about section" id="about">
+  <div class="about-media reveal">
+    <span class="about-year">Since 2021</span>
+    <img class="about-img-main" src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=800&auto=format&fit=crop&q=80" alt="Farmer working in Oregon field">
+    <img class="about-img-inset" src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=400&auto=format&fit=crop&q=80" alt="Fresh produce in basket">
+  </div>
+  <div class="about-body">
+    <p class="label reveal">Our Mission</p>
+    <h2 class="reveal reveal-delay-1">Grown in Oregon.<br><em>Delivered with honesty.</em></h2>
+    <p class="reveal reveal-delay-1">Farmer's Kitchen was built on a single belief: the people who grow our food deserve to be properly supported, and the people who eat it deserve to know exactly where it comes from.</p>
+    <p class="reveal reveal-delay-2">We partner exclusively with small, independent farms across the Willamette Valley — paying above-market rates, eliminating unnecessary markup, and building lasting relationships rooted in transparency.</p>
+    <div class="about-rule reveal reveal-delay-2"></div>
+    <div class="about-stats reveal reveal-delay-3">
+      <div class="stat">
+        <strong>42+</strong>
+        <span>Partner farms</span>
+      </div>
+      <div class="stat" style="padding-left:2rem;">
+        <strong>98%</strong>
+        <span>Organic certified</span>
+      </div>
+      <div class="stat" style="padding-left:2rem;">
+        <strong>3 yr</strong>
+        <span>Avg. relationship</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section class="values section" id="values">
+  <div class="values-header">
+    <div>
+      <p class="label reveal">Why Choose Us</p>
+      <h2 class="reveal reveal-delay-1">The way food<br><em>should</em> work.</h2>
+    </div>
+    <p class="reveal reveal-delay-2">We've rethought every step of how food moves from field to table. Each decision — from how we source to how we pay — reflects a commitment to doing things right.</p>
+  </div>
+  <div class="values-grid">
+    <div class="value-card reveal">
+      <div class="value-num">01</div>
+      <div class="value-line"></div>
+      <h3>Direct from local farmers</h3>
+      <p>No distributors. No brokers. Food travels from a Willamette Valley field directly to your kitchen, preserving freshness and traceability.</p>
+    </div>
+    <div class="value-card reveal reveal-delay-1">
+      <div class="value-num">02</div>
+      <div class="value-line"></div>
+      <h3>Organic &amp; sustainable</h3>
+      <p>Every partner farm follows certified organic or regenerative practices — better for your family and for Oregon's land and waterways.</p>
+    </div>
+    <div class="value-card reveal reveal-delay-2">
+      <div class="value-num">03</div>
+      <div class="value-line"></div>
+      <h3>Fair support for farmers</h3>
+      <p>We pay above-market rates, always. Farmers reinvest in their land and families — and in the next generation of Oregon agriculture.</p>
+    </div>
+    <div class="value-card reveal reveal-delay-3">
+      <div class="value-num">04</div>
+      <div class="value-line"></div>
+      <h3>Radical transparency</h3>
+      <p>Every product tells you which farm it came from, who grew it, and how it was raised. Real food starts with honest information.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="products section" id="products">
+  <div class="products-header reveal">
+    <div>
+      <p class="label">This Season's Harvest</p>
+      <h2>Picked fresh,<br><em>delivered this week.</em></h2>
+    </div>
+    <a href="#contact">View all products &rarr;</a>
+  </div>
+  <div class="products-grid">
+    <div class="product-card reveal">
+      <div class="product-img-wrap">
+        <img class="product-img" src="https://images.unsplash.com/photo-1467453678174-768ec283a940?w=600&auto=format&fit=crop&q=80" alt="Heirloom Tomatoes">
+        <span class="product-badge">Organic</span>
+      </div>
+      <div class="product-body">
+        <span class="product-origin">Meadowbrook Farm &middot; Junction City</span>
+        <h3>Heirloom Tomatoes</h3>
+        <p>Vine-ripened mixed varieties, grown without pesticides or synthetic fertilizers. Rich, complex flavor.</p>
+        <div class="product-foot">
+          <span class="product-price">$7 <span class="product-unit">/ lb</span></span>
+          <a href="#contact" class="btn-add">Add to Order</a>
+        </div>
+      </div>
+    </div>
+    <div class="product-card reveal reveal-delay-1">
+      <div class="product-img-wrap">
+        <img class="product-img" src="https://images.unsplash.com/photo-1569288052389-dac9b0ac9eac?w=600&auto=format&fit=crop&q=80" alt="Pasture-Raised Eggs">
+        <span class="product-badge">Free Range</span>
+      </div>
+      <div class="product-body">
+        <span class="product-origin">Green Ridge Farm &middot; Veneta</span>
+        <h3>Pasture-Raised Eggs</h3>
+        <p>From free-roaming hens with daily outdoor access. Golden yolks, rich flavor, harvested fresh weekly.</p>
+        <div class="product-foot">
+          <span class="product-price">$9 <span class="product-unit">/ dozen</span></span>
+          <a href="#contact" class="btn-add">Add to Order</a>
+        </div>
+      </div>
+    </div>
+    <div class="product-card reveal reveal-delay-2">
+      <div class="product-img-wrap">
+        <img class="product-img" src="https://images.unsplash.com/photo-1543362906-acfc16c67564?w=600&auto=format&fit=crop&q=80" alt="Mixed Salad Greens">
+        <span class="product-badge">Cut-to-Order</span>
+      </div>
+      <div class="product-body">
+        <span class="product-origin">Sunfield Organics &middot; Springfield</span>
+        <h3>Mixed Salad Greens</h3>
+        <p>Arugula, baby spinach, and kale. Never pre-packaged — cut the morning of your delivery.</p>
+        <div class="product-foot">
+          <span class="product-price">$6 <span class="product-unit">/ bag</span></span>
+          <a href="#contact" class="btn-add">Add to Order</a>
+        </div>
+      </div>
+    </div>
+    <div class="product-card reveal">
+      <div class="product-img-wrap">
+        <img class="product-img" src="https://images.unsplash.com/photo-1490885578174-acda8905c2c6?w=600&auto=format&fit=crop&q=80" alt="Wildflower Honey">
+        <span class="product-badge">Raw &amp; Unfiltered</span>
+      </div>
+      <div class="product-body">
+        <span class="product-origin">Cascade Hive Co. &middot; Oakridge</span>
+        <h3>Wildflower Honey</h3>
+        <p>Small-batch, seasonal honey from Cascades foothills hives. Unadulterated and extraordinary in flavor.</p>
+        <div class="product-foot">
+          <span class="product-price">$14 <span class="product-unit">/ jar</span></span>
+          <a href="#contact" class="btn-add">Add to Order</a>
+        </div>
+      </div>
+    </div>
+    <div class="product-card reveal reveal-delay-1">
+      <div class="product-img-wrap">
+        <img class="product-img" src="https://images.unsplash.com/photo-1444459440076-e359fbf43b2b?w=600&auto=format&fit=crop&q=80" alt="Fresh Herb Bundle">
+        <span class="product-badge">Same-Day Harvest</span>
+      </div>
+      <div class="product-body">
+        <span class="product-origin">Oak Hill Herbs &middot; Eugene</span>
+        <h3>Fresh Herb Bundle</h3>
+        <p>Basil, rosemary, thyme, and oregano. Picked that morning — nothing sits in a cooler overnight.</p>
+        <div class="product-foot">
+          <span class="product-price">$5 <span class="product-unit">/ bundle</span></span>
+          <a href="#contact" class="btn-add">Add to Order</a>
+        </div>
+      </div>
+    </div>
+    <div class="product-card reveal reveal-delay-2">
+      <div class="product-img-wrap">
+        <img class="product-img" src="https://images.unsplash.com/photo-1486297678162-eb2a19b0a32d?w=600&auto=format&fit=crop&q=80" alt="Heritage Squash Mix">
+        <span class="product-badge">Seasonal</span>
+      </div>
+      <div class="product-body">
+        <span class="product-origin">Riverbend Farm &middot; Harrisburg</span>
+        <h3>Heritage Squash Mix</h3>
+        <p>Delicata, butternut, and acorn. Deep sweetness — perfect for roasting and autumn cooking.</p>
+        <div class="product-foot">
+          <span class="product-price">$8 <span class="product-unit">/ box</span></span>
+          <a href="#contact" class="btn-add">Add to Order</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IMPACT -->
+<section class="impact" id="impact">
+  <div class="impact-inner">
+    <div class="impact-img-col">
+      <img src="https://images.unsplash.com/photo-1500595046743-cd271d694d30?w=900&auto=format&fit=crop&q=80" alt="Oregon farmer working at sunrise">
+      <div class="impact-img-overlay"></div>
+    </div>
+    <div class="impact-text-col">
+      <p class="label reveal">Our Impact</p>
+      <h2 class="reveal reveal-delay-1">A food system built<br>to <em>last generations.</em></h2>
+      <p class="reveal reveal-delay-1">Every purchase you make supports a different kind of supply chain — one that keeps land in farming, money in farming families, and quality on your table.</p>
+      <div class="impact-metrics reveal reveal-delay-2">
+        <div class="impact-metric">
+          <span class="metric-num">42+</span>
+          <div class="metric-label">
+            <strong>Partner farm families</strong>
+            95% of each payment reaches the farmer directly
+          </div>
+        </div>
+        <div class="impact-metric">
+          <span class="metric-num">3K+</span>
+          <div class="metric-label">
+            <strong>Acres in organic production</strong>
+            Kept from conventional use or development
+          </div>
+        </div>
+        <div class="impact-metric">
+          <span class="metric-num">0</span>
+          <div class="metric-label">
+            <strong>Unnecessary food miles</strong>
+            Route-optimized weekly delivery across Eugene
+          </div>
+        </div>
+      </div>
+      <div class="impact-quote-block reveal reveal-delay-3">
+        <blockquote>"For the first time, I'm earning a real living farming land my grandfather owned. Farmer's Kitchen changed everything for us."</blockquote>
+        <cite>&mdash; Daniel Reyes, Meadowbrook Farm, Junction City OR</cite>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact section" id="contact">
+  <div class="contact-inner">
+    <div class="contact-left">
+      <p class="label reveal">Get in Touch</p>
+      <h2 class="reveal reveal-delay-1">Let's talk<br><em>fresh food.</em></h2>
+      <p class="reveal reveal-delay-1">We're a small team and we read every message. Whether you're placing an order, asking about a product, or exploring a farm partnership — we'd love to hear from you.</p>
+      <div class="contact-details reveal reveal-delay-2">
+        <div class="contact-detail">
+          <div class="detail-icon">📍</div>
+          <div class="detail-text">
+            <strong>Location</strong>
+            <span>Eugene, Oregon 97401</span>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="detail-icon">✉</div>
+          <div class="detail-text">
+            <strong>Email</strong>
+            <span>farmer.kitchen.eug@gmail.com</span>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="detail-icon">☎</div>
+          <div class="detail-text">
+            <strong>Phone</strong>
+            <span>(541) 555-0182</span>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="detail-icon">🕐</div>
+          <div class="detail-text">
+            <strong>Hours</strong>
+            <span>Mon – Sat, 8am – 5pm Pacific</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="contact-form-wrap reveal reveal-delay-2">
+      <form id="contactForm">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="fname">First Name</label>
+            <input type="text" id="fname" placeholder="Jane" required>
+          </div>
+          <div class="form-group">
+            <label for="lname">Last Name</label>
+            <input type="text" id="lname" placeholder="Smith" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" placeholder="jane@example.com" required>
+        </div>
+        <div class="form-group">
+          <label for="interest">I'm interested in</label>
+          <select id="interest">
+            <option value="">Select a topic</option>
+            <option>Placing a product order</option>
+            <option>Weekly delivery subscription</option>
+            <option>Farm partnership</option>
+            <option>General enquiry</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" placeholder="Tell us what you're looking for..." required></textarea>
+        </div>
+        <button type="submit" class="btn-submit">Send Message</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="#" class="nav-logo">Farmer's <em>Kitchen</em></a>
+      <p class="footer-tagline">Connecting Oregon communities to the farmers who feed them.</p>
+      <div class="footer-social">
+        <a href="#" aria-label="Instagram">In</a>
+        <a href="#" aria-label="Facebook">Fb</a>
+        <a href="#" aria-label="Pinterest">Pn</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#impact">Our Impact</a></li>
+        <li><a href="#contact">Work With Us</a></li>
+        <li><a href="#contact">Farm Partners</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Shop</h4>
+      <ul>
+        <li><a href="#products">Vegetables</a></li>
+        <li><a href="#products">Dairy &amp; Eggs</a></li>
+        <li><a href="#products">Herbs &amp; Greens</a></li>
+        <li><a href="#products">Pantry Goods</a></li>
+        <li><a href="#products">Seasonal Boxes</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Use</a></li>
+        <li><a href="#">Delivery Info</a></li>
+        <li><a href="#">Accessibility</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2025 Farmer's Kitchen LLC. All rights reserved.</span>
+    <span>From Oregon soil to your table.</span>
+  </div>
+</footer>
+
+<script>
+const nav = document.getElementById('nav');
+const hamburger = document.getElementById('hamburger');
+const navMenu = document.getElementById('navMenu');
+
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+}, { passive: true });
+
+hamburger.addEventListener('click', () => navMenu.classList.toggle('open'));
+
+document.querySelectorAll('.nav-center a').forEach(a => {
+  a.addEventListener('click', () => navMenu.classList.remove('open'));
+});
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const btn = this.querySelector('.btn-submit');
+  btn.textContent = 'Message Sent \u2713';
+  btn.style.background = 'var(--sage)';
+  btn.disabled = true;
+  setTimeout(() => {
+    btn.textContent = 'Send Message';
+    btn.style.background = '';
+    btn.disabled = false;
+    this.reset();
+  }, 3500);
+});
+</script>
+</body>
+</html>
