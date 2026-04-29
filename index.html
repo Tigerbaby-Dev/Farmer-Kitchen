@@ -9,12 +9,35 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
 
   <style>
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
 .nav-logo img {
   height: 300px;
   width: auto;
-  display: block;
 }
-    
+
+.nav-logo span {
+  font-family: var(--serif);
+  font-size: 1.2rem;
+  color: var(--white);
+}
+
+nav.scrolled .nav-logo span {
+  color: var(--ink);
+}
+
+.nav-logo em {
+  font-style: italic;
+  color: var(--gold-pale);
+}
+
+nav.scrolled .nav-logo em {
+  color: var(--gold);
+}
     
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -891,6 +914,7 @@ footer { background: var(--ink); padding: 5rem 10vw 3rem; }
 <nav id="nav">
  <a href="#" class="nav-logo">
   <img src="Logo.svg" alt="Farmer's Kitchen Logo">
+   <span>Farmer’s <em>Kitchen</em></span>
 </a>
   <ul class="nav-center" id="navMenu">
     <li><a href="#about">About</a></li>
