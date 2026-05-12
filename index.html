@@ -905,6 +905,42 @@ footer { background: var(--ink); padding: 5rem 10vw 3rem; }
 .reveal-delay-2 { transition-delay: 0.24s; }
 .reveal-delay-3 { transition-delay: 0.36s; }
 .reveal-delay-4 { transition-delay: 0.48s; }
+
+/* EXECUTIVE TEAM */
+.team-section {
+  background: var(--white);
+  text-align: center;
+}
+
+.team-container h2 {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 3vw, 3.2rem);
+  font-weight: 400;
+  margin: 1rem 0 2rem;
+  color: var(--ink);
+}
+
+.team-container h2 em {
+  font-style: italic;
+  color: var(--sage);
+}
+
+.team-container img {
+  width: 100%;
+  max-width: 1100px;
+  border-radius: 24px;
+  margin: 0 auto 2rem;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+}
+
+.team-caption {
+  max-width: 700px;
+  margin: 0 auto;
+  font-size: 0.9rem;
+  line-height: 1.8;
+  color: var(--ink-muted);
+}
+
 </style>
 </head>
 <body>
@@ -1249,6 +1285,22 @@ footer { background: var(--ink); padding: 5rem 10vw 3rem; }
         <button type="submit" class="btn-submit">Send Message</button>
       </form>
     </div>
+  </div>
+</section>
+
+
+<!-- EXECUTIVE TEAM -->
+<section class="team-section section">
+  <div class="team-container reveal">
+    <p class="label">Leadership Team</p>
+    <h2>Meet the <em>Executive Team</em></h2>
+
+    <img src="ExecTeam.png" alt="Farmer's Kitchen Executive Team">
+
+    <p class="team-caption">
+      The team behind Farmer’s Kitchen — committed to building a more sustainable,
+      transparent, and community-driven food system for Oregon.
+    </p>
   </div>
 </section>
 
