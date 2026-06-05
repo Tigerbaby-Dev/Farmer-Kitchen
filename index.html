@@ -780,10 +780,6 @@ nav.scrolled .hamburger span { background: var(--ink); }
 }
 .btn-submit:hover { background: var(--sage); }
 
-    <div class="news-banner">
-  <img src="news.png" alt="Farmer's Kitchen News">
-</div>
-
 /* FOOTER */
 footer { background: var(--ink); padding: 5rem 10vw 3rem; }
 .footer-top {
@@ -1037,6 +1033,37 @@ footer { background: var(--ink); padding: 5rem 10vw 3rem; }
     flex-direction: column;
     align-items: flex-start;
   }
+}
+
+.news-link {
+  display: inline-block;
+  margin-top: 1rem;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--sage);
+  border-bottom: 1px solid var(--sage);
+  padding-bottom: 3px;
+  transition: 0.3s ease;
+}
+
+.news-link:hover {
+  color: var(--gold);
+  border-color: var(--gold);
+}
+
+.news-banner {
+  margin-top: 4rem;
+}
+
+.news-banner img {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: block;
+  border-radius: 24px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.12);
 }
 
 </style>
@@ -1439,49 +1466,16 @@ Supports team coordination, communication, and collaborative decision-making wit
         <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?w=900&auto=format&fit=crop&q=80" alt="Fresh produce market">
       </div>
       <div class="news-content">
-        <span class="news-date">June 2026</span>
-        <h3> Monthly News Letter
-          Farmer’s Kitchen Partnership with G.R.E.E.N 
-        </h3>
+        <span class="news-date">May 2026</span>
+        <h3>Farmer’s Kitchen Expands Local Farm Partnerships</h3>
         <p>
-Dear Community,
+          We are proud to welcome new Willamette Valley farms into the Farmer’s Kitchen network,
+          helping bring more locally grown produce directly to Eugene households.
+        </p>
 
-We are excited to share an important milestone for Farmer’s Kitchen as we continue to grow our impact across the Willamette Valley.
-
-🌿 Partnering with G.R.E.E.N Neighbour
-
-In May 2026, Farmer’s Kitchen officially partnered with G.R.E.E.N Neighbour, a nonprofit organization dedicated to supporting sustainable agriculture, community education, and local food systems.
-
-This partnership represents more than collaboration—it reflects a shared commitment to transparency, environmental responsibility, and strengthening the connection between people and the food they consume. Together, we aim to expand access to locally sourced products while supporting the farmers who make it possible.
-
-Through this partnership, we will be working on initiatives that promote sustainable farming practices, increase community awareness, and create more opportunities for local farms to reach consumers directly.
-
-🥕 Farmer’s Kitchen Expands Local Farm Partnerships
-
-We are also proud to welcome new farms from the Willamette Valley into the Farmer’s Kitchen network.
-
-Each new partnership strengthens our ability to provide fresh, seasonal, and responsibly sourced products. By expanding our network, we are not only increasing variety for our customers, but also deepening our commitment to supporting independent farmers and local agriculture.
-
-Our focus remains the same:
-
-Building direct relationships with farmers
-Ensuring transparency in sourcing
-Delivering high-quality, seasonal food to our community
-🌎 Looking Ahead
-
-As Farmer’s Kitchen continues to grow, we remain grounded in the values that started it all—honesty, transparency, and a belief that food should connect people, not distance them.
-
-We are grateful for your continued support and trust as we take these next steps forward.
-</p>
-
-<a href="https://www.instagram.com/reel/DYv-37dP2VO/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank">
-  Watch Instagram Promo →
-<a href="https://www.instagram.com/p/DZGW2r4kiAo/?utm_source=ig_web_copy_link" target="_blank">
-  Our Brochure ->
-</a>
-</a>
-</a>
-</a>
+        <a href="https://www.instagram.com/reel/DYv-37dP2VO/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank" class="news-link">
+          Watch Instagram Promo →
+        </a>
       </div>
     </article>
 
@@ -1490,51 +1484,21 @@ We are grateful for your continued support and trust as we take these next steps
         <img src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=900&auto=format&fit=crop&q=80" alt="Farmer harvesting vegetables">
       </div>
       <div class="news-content">
-        <span class="news-date"> June 2026</span>
+        <span class="news-date">April 2026</span>
         <h3>Sustainability Initiative Launches</h3>
         <p>
-          To All,
-On June 9, students in Business and Professional Communication
-(COMM 130) will showcase their work in a trade-show style from
-2:00-3:00 pm on the second floor of the Center building. Our
-company will occupy a small table at the event, so please feel free to
-drop in at any time during this period, come with any questions you
-may have and see what our company is all about!
-We are going to be showing off some of our brand new menu items
-and introducing the community to our team. If you’ve heard of us
-but aren’t super familiar with what we have to offer, we encourage
-you to come and check it out! We are happy to answer any questions
-you may have.
-          Sincerely,
-
-          Farmer's Kitchen
+          Farmer’s Kitchen continues investing in regenerative agriculture and supporting
+          sustainable Oregon farming practices.
         </p>
       </div>
     </article>
   </div>
-</section>
-<!-- BROCHURE -->
-<section class="section" style="background: var(--white); text-align:center;">
-  <p class="label">Our Brochure</p>
-  <h2 style="font-family: var(--serif); margin: 1rem 0 2rem;">
-    Explore our <em>Farm-to-Table Vision</em>
-  </h2>
 
-  <div style="display:flex; justify-content:center; gap:30px; flex-wrap:wrap;">
-    <img src="1.png" alt="Brochure Front" 
-         style="width:100%; max-width:500px; border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,0.1);">
-
-    <img src="2.png" alt="Brochure Back" 
-         style="width:100%; max-width:500px; border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,0.1);">
-  </div>
-
-  <div style="margin-top:30px;">
-    <a href="https://www.instagram.com/p/DZGW2r4kiAo/?utm_source=ig_web_copy_link" target="_blank"
-       style="display:inline-block; padding:10px 18px; background-color:#2e7d32; color:white; text-decoration:none; border-radius:6px;">
-      View Full Brochure →
-    </a>
+  <div class="news-banner">
+    <img src="News.png" alt="Farmer's Kitchen News Feature">
   </div>
 </section>
+
 <!-- FOOTER -->
 <footer>
   <div class="footer-top">
